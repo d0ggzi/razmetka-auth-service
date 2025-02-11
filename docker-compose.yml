@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16.1
+    container_name: "postgres_db"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - .:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+  server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - .:/opt/app
+    ports:
+      - "8000:8000"
+    restart: always
+    environment:
+      - POSTGRES_HOST=postgres_db
+    networks:
+      - app-network
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:

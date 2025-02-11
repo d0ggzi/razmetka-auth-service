@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "learninglab"
+version = "0.1.0"
+description = ""
+authors = ["dggz <maks-laptev.03@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.8"
+psycopg2-binary = "^2.9.10"
+pydantic-settings = "^2.7.1"
+pyjwt = "^2.10.1"
+bcrypt = "^4.2.1"
+uvicorn = "^0.34.0"
+python-multipart = "^0.0.20"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
