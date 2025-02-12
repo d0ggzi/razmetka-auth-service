@@ -17,11 +17,11 @@ class User(BaseModel):
     task_type_access: list[uuid.UUID]
 
     @field_serializer("id")
-    def serialize_uuid(self, value):
+    def serialize_uuid_id(self, value):
         return str(value)
 
     @field_serializer("task_type_access")
-    def serialize_uuid(self, value):
+    def serialize_uuid_task_type_access(self, value):
         return [str(v) for v in value] if value else None
 
 
