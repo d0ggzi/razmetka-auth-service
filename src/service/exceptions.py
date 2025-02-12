@@ -8,3 +8,7 @@ class UserNotFoundError(Exception):
 
 class RoleNotFoundError(Exception):
     """Роль не найдена"""
+
+
+class BadCredentials(Exception):
+    """Неверные данные для входа"""

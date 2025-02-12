@@ -8,9 +8,11 @@ WORKDIR /opt/app
 RUN pip install poetry==1.8.3
 
 COPY src ./src
-COPY pyproject.toml poetry.lock ./
+COPY migrations ./migrations
+COPY pyproject.toml poetry.lock alembic.ini ./
 
 RUN poetry config virtualenvs.create false \
     && poetry install
 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "alembic upgrade head && uvicorn src.main:app --host 0.0.0.0 --port 8000"]
+
