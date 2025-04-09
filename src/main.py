@@ -2,13 +2,13 @@ import fastapi
 
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.api.auth import router
+from src.api.auth import auth_router, user_router
 from src.utils.middleware import catch_exceptions_middleware
 
 app = fastapi.FastAPI()
-app.middleware('http')(catch_exceptions_middleware)
+app.middleware("http")(catch_exceptions_middleware)
 
-origins = ['*']
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,4 +18,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router)
+app.include_router(auth_router)
+app.include_router(user_router)
